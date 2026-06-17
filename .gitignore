@@ -1,4 +1,5 @@
 *.class
 *.log
 *.jar
+historico_truco.txt
 /build/

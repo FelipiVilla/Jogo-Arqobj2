@@ -22,8 +22,18 @@ public class Bot extends Jogador {
 
     
     
-    @Override
+   @Override
     public Carta jogarCarta() {
+        System.out.println("\n--- Vez de " + getNome() + " ---");
+        System.out.println(getNome() + " esta pensando na proxima jogada...");
+        
+        try {
+            Thread.sleep(1500); 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("A jogada do bot foi interrompida.");
+        }
+
         Carta cartaJogada = removerCarta(1);
         System.out.println(getNome() + " jogou: " + cartaJogada);
         return cartaJogada;

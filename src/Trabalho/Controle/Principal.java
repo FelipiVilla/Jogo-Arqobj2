@@ -4,6 +4,7 @@
  */
 package Trabalho.Controle;
 
+import Trabalho.Modelo.LogPartida;
 import java.util.Scanner;
 
 /**
@@ -13,28 +14,35 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
-        Mesa mesa = new Mesa(scanner);
+        LogPartida log = new LogPartida();
+        Mesa mesa = new Mesa(scanner,log);
 
         System.out.println("=== BEM VINDO AO JOGO DE TRUCO ===");
 
-        while (mesa.getJogador1().getPontos() < 12 && mesa.getJogador2().getPontos() < 12) {
-            
-            System.out.println("\n==================================");
-            System.out.println("PLACAR: " + mesa.getJogador1().getNome() + " [" + mesa.getJogador1().getPontos() + "] x [" 
-                               + mesa.getJogador2().getPontos() + "] " + mesa.getJogador2().getNome());
-            System.out.println("==================================");
-            
-            mesa.tento(); 
-        }
+        Thread threadPartida = new Thread(() -> {
+            while (mesa.getJogador1().getPontos() < 12 && mesa.getJogador2().getPontos() < 12) {
+                System.out.println("\n==================================");
+                System.out.println("PLACAR: " + mesa.getJogador1().getNome() + " [" + mesa.getJogador1().getPontos() + "] x [" 
+                                   + mesa.getJogador2().getPontos() + "] " + mesa.getJogador2().getNome());
+                System.out.println("==================================");
+                
+                mesa.tento(); 
+            }
 
-        System.out.println("\n=== FIM DE JOGO ===");
-        if (mesa.getJogador1().getPontos() >= 12) {
-            System.out.println("PARABENS! " + mesa.getJogador1().getNome() + " venceu a partida!");
-        } else {
-            System.out.println("O " + mesa.getJogador2().getNome() + " venceu a partida. Tente novamente!");
-        }
+            System.out.println("\n=== FIM DE JOGO ===");
+            if (mesa.getJogador1().getPontos() >= 12) {
+                System.out.println("PARABENS! " + mesa.getJogador1().getNome() + " venceu a partida!");
+                log.registrarFimPartida(mesa.getJogador1());
+            } else {
+                System.out.println("O " + mesa.getJogador2().getNome() + " venceu a partida. Tente novamente!");
+                log.registrarFimPartida(mesa.getJogador2());
+            }
+            log.encerrar();
+            scanner.close();
+        });
 
-        scanner.close();
+        threadPartida.start();
+
+        
     }
 }

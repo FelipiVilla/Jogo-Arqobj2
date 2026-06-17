@@ -10,6 +10,7 @@ import Trabalho.Modelo.Bot;
 import Trabalho.Modelo.CompareJogadas;
 import Trabalho.Modelo.Jogador;
 import Trabalho.Modelo.JogadorReal;
+import Trabalho.Modelo.LogPartida;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ import java.util.Scanner;
  */
 public class Mesa {
     private Scanner scanner;
+    private LogPartida log;
     private Baralho baralho = new Baralho();
     private Carta vira;
     private Jogador jogador1;
@@ -27,8 +29,9 @@ public class Mesa {
     private Carta jogada2;
     private int truco = 0; // 0 = sem truco, 1 = truco, 2 = 6, 3 = 9, 4 = 12
 
-    public Mesa(Scanner scanner) {
+    public Mesa(Scanner scanner, LogPartida log) {
         this.scanner = scanner;
+        this.log = log;
         jogador1  = new JogadorReal("EU", scanner);
     }
     
@@ -121,11 +124,13 @@ public class Mesa {
         
         if(rodadaFinal == 0){
             if(rodadasJogador2 == 2){
-                jogador2.adicionarPontos(truco);     
+                jogador2.adicionarPontos(truco);   
+                log.registrarPonto(jogador2,truco);
                 return;
             }
-            if(rodadasJogador1 == 2){
+            else if(rodadasJogador1 == 2){
                 jogador1.adicionarPontos(truco);
+                log.registrarPonto(jogador1, truco);
                 return;
             }
         }
@@ -136,7 +141,7 @@ public class Mesa {
             case 1: 
 
                     jogador1.adicionarPontos(truco);
-
+                    log.registrarPonto(jogador1, truco);
                 
                 
                 break;
@@ -144,7 +149,7 @@ public class Mesa {
                 
 
                     jogador1.adicionarPontos(truco);
-
+                    log.registrarPonto(jogador1, truco);
                 
                 break;
                 
@@ -152,13 +157,13 @@ public class Mesa {
                 
 
                     jogador2.adicionarPontos(truco);     
-
+                    log.registrarPonto(jogador2, truco);
                 
                 break;
             case -2: 
 
                     jogador2.adicionarPontos(truco);     
-
+                    log.registrarPonto(jogador2, truco);
                 
                 break;
                 

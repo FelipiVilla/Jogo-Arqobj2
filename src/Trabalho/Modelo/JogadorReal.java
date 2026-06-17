@@ -33,7 +33,7 @@ public class JogadorReal extends Jogador {
         int escolha = -1;
         boolean escolhaValida = false;
 
-        while (!escolhaValida) {
+        while (escolhaValida == false) {
             System.out.print("Escolha a carta (1 a " + getMao().size() + " ou 0 para pedir truco): ");
             try {
                 escolha = Integer.parseInt(scanner.nextLine());
@@ -46,7 +46,7 @@ public class JogadorReal extends Jogador {
                     System.out.println("Opçao invalida. Tente novamente.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Por favor, digite um número valido.");
+                System.out.println("Por favor, digite um numero valido.");
             }
         }
 
