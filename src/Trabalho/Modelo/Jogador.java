@@ -23,6 +23,8 @@ public abstract class Jogador {
         this.pontos = 0;
     }
     
+    public abstract void enviarMensagem(String mensagem);
+    
     public List<Carta> getMao(){
         return Collections.unmodifiableList(mao);
     }

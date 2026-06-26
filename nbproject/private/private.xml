@@ -5,13 +5,8 @@
         <group>
             <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Controle/Mesa.java</file>
             <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Controle/Principal.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/CompareJogadas.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/Jogador.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/Carta.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/Baralho.java</file>
             <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/JogadorReal.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/Bot.java</file>
-            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/Naipe.java</file>
+            <file>file:/D:/Truco/TrabalhoMario/src/Trabalho/Modelo/LogPartida.java</file>
         </group>
     </open-files>
 </project-private>

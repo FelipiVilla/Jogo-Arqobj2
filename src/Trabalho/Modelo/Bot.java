@@ -18,8 +18,13 @@ public class Bot extends Jogador {
         super("bot");
     }
 
-    
+    @Override
+    public void enviarMensagem(String mensagem) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
+    
+    
     
     
    @Override

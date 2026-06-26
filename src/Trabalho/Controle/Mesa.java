@@ -24,15 +24,15 @@ public class Mesa {
     private Baralho baralho = new Baralho();
     private Carta vira;
     private Jogador jogador1;
-    private Jogador jogador2 = new Bot();
+    private Jogador jogador2;
     private Carta jogada1;
     private Carta jogada2;
     private int truco = 0; // 0 = sem truco, 1 = truco, 2 = 6, 3 = 9, 4 = 12
 
-    public Mesa(Scanner scanner, LogPartida log) {
-        this.scanner = scanner;
+    public Mesa(Jogador jogador1, Jogador jogador2, LogPartida log) {
+        this.jogador1 = jogador1;
+        this.jogador2 = jogador2;
         this.log = log;
-        jogador1  = new JogadorReal("EU", scanner);
     }
     
     public Jogador getJogador1(){
@@ -66,16 +66,21 @@ public class Mesa {
         
         if (jogada1 == null) {
             System.out.println("\n!!! " + jogador1.getNome() + " PEDIU TRUCO !!!");
+            jogador1.enviarMensagem("\n!!! " + jogador1.getNome() + " PEDIU TRUCO !!!");
+            jogador2.enviarMensagem("\n!!! " + jogador1.getNome() + " PEDIU TRUCO !!!");
             
            
             System.out.println(jogador2.getNome() + " aceitou o Truco!"); 
+            jogador1.enviarMensagem(jogador2.getNome() + " aceitou o Truco!");
             this.truco = 1; 
             
             System.out.println("Agora jogue sua carta de verdade:");
+            jogador1.enviarMensagem("Agora jogue sua carta de verdade:");
             jogada1 = jogador1.jogarCarta();
             
             while (jogada1 == null) {
                 System.out.println("Voce ja pediu truco! Escolha uma carta valida.");
+                jogador1.enviarMensagem("Voce ja pediu truco! Escolha uma carta valida.");
                 jogada1 = jogador1.jogarCarta();
             }
         }
@@ -102,8 +107,12 @@ public class Mesa {
         baralho.embraralhar();
         entregarCartas();
         
-        System.out.println("\n--- NOVA MAO ---");
-        System.out.println("A carta Vira e: " + vira);
+
+        System.out.println("\nNova mão iniciada. Vira: " + vira); 
+
+        String mensagemVira = "\n--- NOVA MAO ---\nA carta Vira e: " + vira.toString();
+        jogador1.enviarMensagem(mensagemVira);
+        jogador2.enviarMensagem(mensagemVira);
         
         for (int i = 0; i < 2; i++) {
             switch (this.rodada()) {

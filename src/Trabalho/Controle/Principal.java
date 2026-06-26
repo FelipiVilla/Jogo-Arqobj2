@@ -4,6 +4,8 @@
  */
 package Trabalho.Controle;
 
+import Trabalho.Modelo.Bot;
+import Trabalho.Modelo.Jogador;
 import Trabalho.Modelo.LogPartida;
 import java.util.Scanner;
 
@@ -14,8 +16,10 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Jogador j1= new Bot();
+        Jogador j2 = new Bot();
         LogPartida log = new LogPartida();
-        Mesa mesa = new Mesa(scanner,log);
+        Mesa mesa = new Mesa(j1,j2,log);
 
         System.out.println("=== BEM VINDO AO JOGO DE TRUCO ===");
 

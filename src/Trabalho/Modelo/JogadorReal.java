@@ -19,6 +19,11 @@ public class JogadorReal extends Jogador {
         this.scanner = scanner;
     }
 
+    @Override
+    public void enviarMensagem(String mensagem) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     
     @Override
@@ -33,6 +38,7 @@ public class JogadorReal extends Jogador {
         int escolha = -1;
         boolean escolhaValida = false;
 
+        
         while (escolhaValida == false) {
             System.out.print("Escolha a carta (1 a " + getMao().size() + " ou 0 para pedir truco): ");
             try {
