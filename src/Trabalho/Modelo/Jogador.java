@@ -66,4 +66,11 @@ public abstract class Jogador {
     protected Carta removerCarta(int x){
         return mao.remove(x - 1);
     }
+    
+    public abstract int responderTruco();
+    
+    
+    public void zerarPontos() {
+        this.pontos = 0;
+    }
 }

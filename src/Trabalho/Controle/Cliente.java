@@ -16,6 +16,7 @@ import java.util.Scanner;
  *
  * @author Felipi
  */
+
 public class Cliente {
     public static void main(String[] args) {
         try {
@@ -30,10 +31,11 @@ public class Cliente {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Conectado ao servidor de Truco!");
+            System.out.println("Conectado ao servidor de Truco");
             Thread leitorServidor = new Thread(() -> {
                 try {
                     String mensagem;
+                    
                     while ((mensagem = in.readLine()) != null) {
                         System.out.println(mensagem);
                     }

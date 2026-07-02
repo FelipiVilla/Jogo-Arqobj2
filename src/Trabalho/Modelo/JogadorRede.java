@@ -41,9 +41,10 @@ public class JogadorRede extends Jogador {
         int escolha = -1;
         boolean escolhaValida = false;
 
-        while (!escolhaValida) {
+        while (escolhaValida == false) {
             enviarMensagem("Escolha a carta (1 a " + getMao().size() + " ou 0 para pedir truco): ");
             try {
+                descartarEntradasForaDeHora();
                 String resposta = in.readLine();
                 escolha = Integer.parseInt(resposta);
                 
@@ -53,7 +54,7 @@ public class JogadorRede extends Jogador {
                 if (escolha >= 1 && escolha <= getMao().size()) {
                     escolhaValida = true;
                 } else {
-                    enviarMensagem("Opção invalida. Tente novamente.");
+                    enviarMensagem("Opçao invalida. Tente novamente.");
                 }
             } catch (Exception e) {
                 enviarMensagem("Por favor, digite um numero valido.");
@@ -61,7 +62,70 @@ public class JogadorRede extends Jogador {
         }
 
         Carta cartaJogada = removerCarta(escolha);
-        enviarMensagem("Você jogou: " + cartaJogada);
+        enviarMensagem("Voce jogou: " + cartaJogada);
         return cartaJogada;
+    }
+    
+    @Override
+    public int responderTruco() {
+        int escolha = -1;
+        boolean escolhaValida = false;
+
+        while (escolhaValida == false) {
+            try {
+                descartarEntradasForaDeHora();
+                String resposta = in.readLine();
+                escolha = Integer.parseInt(resposta);
+                
+                if (escolha >= 1 && escolha <= 3) {
+                    escolhaValida = true;
+                } else {
+                    enviarMensagem("Opcao invalida. Digite 1 (Aceitar), 2 (Correr) ou 3 (Aumentar).");
+                }
+            } catch (Exception e) {
+                enviarMensagem("Por favor, digite um numero valido.");
+            }
+        }
+        return escolha;
+    }
+    
+    public boolean confirmarPronto() {
+        enviarMensagem("\nDigite 1 quando estiver pronto para iniciar a partida:");
+        while(true) {
+            try {
+                descartarEntradasForaDeHora();
+                int resposta = Integer.parseInt(in.readLine());
+                if(resposta == 1) return true;
+                enviarMensagem("Comando invalido. Digite 1 para iniciar.");
+            } catch (Exception e) {
+                enviarMensagem("Erro. Digite 1 para iniciar.");
+            }
+        }
+    }
+
+    public boolean desejaReiniciar() {
+        enviarMensagem("\nDeseja jogar novamente? (1 - Sim, 2 - Nao):");
+        while(true) {
+            try {
+                descartarEntradasForaDeHora();
+                int resposta = Integer.parseInt(in.readLine());
+                if(resposta == 1) return true;
+                if(resposta == 2) return false;
+                enviarMensagem("Opcao invalida. Digite 1 (Sim) ou 2 (Nao).");
+            } catch (Exception e) {
+                enviarMensagem("Por favor, digite um numero valido.");
+            }
+        }
+    }
+    
+    private void descartarEntradasForaDeHora() { // isso servre pra limpar os buffers antes de dar respostas
+        try {
+            
+            while (in.ready()) {
+                in.readLine();
+            }
+        } catch (IOException e) {
+
+        }
     }
 }
